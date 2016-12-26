@@ -1,0 +1,43 @@
+{
+  "name": "@emonkak/xml-parser",
+  "version": "0.0.0",
+  "description": "A XML parser by PEG.js",
+  "main": "./lib/index.js",
+  "scripts": {
+    "build": "npm-run-all -p build:js build:pegjs",
+    "build:js": "tsc --declaration --rootDir src",
+    "build:pegjs": "pegjs -o lib/xml.js src/xml.pegjs && cp src/xml.d.ts lib",
+    "lint": "tslint 'src/**/*.ts'",
+    "prebuild": "rm -f -r lib && mkdir -p lib",
+    "prepublish": "npm run build",
+    "test": "tape -r ts-node/register 'test/**/*.ts'",
+    "watch": "npm-run-all -p watch:js watch:pegjs",
+    "watch:js": "tsc --declaration --rootDir src",
+    "watch:pegjs": "watch 'npm run build:pegjs' 'src/*.pegjs'"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib/"
+  ],
+  "author": "Shota Nozaki",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:emonkak/js-xml-parser.git"
+  },
+  "homepage": "https://github.com/emonkak/js-xml-parser",
+  "devDependencies": {
+    "@types/tape": "^4.2.28",
+    "cash-mkdir": "^0.2.0",
+    "cash-rm": "^0.2.0",
+    "npm-run-all": "^3.1.2",
+    "pegjs": "^0.10.0",
+    "tap": "^8.0.1",
+    "tape": "^4.6.3",
+    "ts-node": "^1.7.2",
+    "tslint": "^4.2.0",
+    "typescript": "^2.1.4",
+    "watch": "^1.0.1"
+  }
+}

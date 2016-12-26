@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "jsx": "react",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": true,
+        "outDir": "lib/",
+        "strictNullChecks": true,
+        "target": "es2015"
+    },
+    "exclude": [
+        "node_modules",
+        "test"
+    ]
+}
