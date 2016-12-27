@@ -1,10 +1,10 @@
 {
   var ENTITY_REFERENCES = {
-    'amp': '&',
-    'lt': '<',
-    'gt': '>',
-    'quot': '"',
-    'quot': "'"
+    '&amp;': '&',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&quot;': '"',
+    '&quot;': "'"
   };
 }
 
@@ -52,11 +52,11 @@ EntityValue
 
 // [10] AttValue ::= '"' ([^<&"] | Reference)* '"' | "'" ([^<&'] | Reference)* "'"
 AttValue
-  = '"' string:$([^<&"] / Reference)* '"' {
-    return string;
+  = '"' string:([^<&"] / Reference)* '"' {
+    return string.join('');
   }
-  / "'" string:$([^<&'] / Reference)* "'" {
-    return string;
+  / "'" string:([^<&'] / Reference)* "'" {
+    return string.join('');
   }
 
 // [11] SystemLiteral ::= ('"' [^"]* '"') | ("'" [^']* "'")
@@ -311,13 +311,13 @@ Reference
 
 // [68] EntityRef ::= '&' Name ';'
 EntityRef
-  = '&' name:Name ';' {
-    return ENTITY_REFERENCES[name] || ('&' + name + ';');
+  = name:$('&' Name ';') {
+    return ENTITY_REFERENCES[name] || name;
   }
 
 // [69] PEReference ::= '%' Name ';'
 PEReference
-  = '%' name:Name ';'
+  = '%' Name ';'
 
 // [70] EntityDecl ::= GEDecl | PEDecl
 EntityDecl
